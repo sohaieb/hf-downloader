@@ -1,0 +1,17 @@
+{
+  "name": "hf-downloader",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@huggingface/hub": "^1.1.2",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0"
+  }
+}
