@@ -15,6 +15,10 @@ bun install
 
 To run:
 
+- Create a Hugging Face token: [Hugging Face Tokens](https://huggingface.co/docs/hub/security-tokens)
+- Copy `.env.example` to `.env` and set your `HF_TOKEN`.
+- Then:
+
 ```bash
 bun run convert.ts -h
 ```
@@ -23,10 +27,10 @@ bun run convert.ts -h
 
 - Run `bun convert -h` to show available options and usage instructions. For example:
 
-  - To list available quantizations: `bun convert --list-quantizations`
-  - To download and convert the `facebook/opt-125m` model with auto-quantization: `bun convert --model facebook/opt-125m`
-  - To download and convert the `facebook/opt-125m` model with 4-bit quantization: `bun convert --model facebook/opt-125m --quantization q4_0`
-  - To download, convert, and clean up temporary files after processing the `facebook/opt-125m` model: `bun convert --model facebook/opt-125m --clean`
+  - List available quantizations: `bun run convert.ts --list-quantizations`
+  - Convert `facebook/opt-125m` with auto-quantization: `bun run convert.ts --model facebook/opt-125m`
+  - Convert `facebook/opt-125m` with 4-bit quantization: `bun run convert.ts --model facebook/opt-125m --quantization q4_0`
+  - Convert `facebook/opt-125m` and clean up temporary files: `bun run convert.ts --model facebook/opt-125m --clean`
 
 - Configure the download location and other settings in `src/config.ts`.
 - Utilize the `src/utilities.ts` for helper functions.

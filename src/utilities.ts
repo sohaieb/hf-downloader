@@ -1,5 +1,5 @@
 import path, { join } from "path";
-import { accessToken, hub } from "./config";
+import { DOWNLOADED_MODELS_FOLDER, HF_TOKEN, hub } from "./config";
 import chalk from "chalk";
 import { spawn, spawnSync } from "child_process";
 import { mkdirSync, existsSync, rmdirSync, readdirSync } from "fs";
@@ -10,7 +10,7 @@ export async function getModels({ query, task }: HfGetModels) {
   const result = [];
   const models = hub.listModels({
     credentials: {
-      accessToken: accessToken,
+      accessToken: HF_TOKEN,
     },
     search: {
       query: query ?? "",
@@ -33,7 +33,7 @@ export async function downloadSnap(repo: string) {
   return await hub.snapshotDownload({
     repo,
     revision: "main",
-    cacheDir: path.join(path.resolve("downloaded_models")),
+    cacheDir: path.join(path.resolve(DOWNLOADED_MODELS_FOLDER)),
   });
 }
 
@@ -86,7 +86,7 @@ export async function createOllamaModel(
         `${outFile}`
       );
 
-      const fd = Bun.file(`${join(tmpDir, "Modelfile")}`);
+      const fd = Bun.file(`${join(tmpDir, "Modelfile.template")}`);
       console.log(chalk.blueBright(`Writing Modelfile..`));
       await fd.write(ollamaModelFileContent);
 
@@ -197,7 +197,11 @@ export function setupLlamaCppRepoRequirements(): Promise<true> {
 
     ps.on("close", (code) => {
       if (code !== 0) {
-        console.log(chalk.red(`LlamaCpp packages installation ended with a code error: ${code}`));
+        console.log(
+          chalk.red(
+            `LlamaCpp packages installation ended with a code error: ${code}`
+          )
+        );
         return rej(code);
       }
       console.log(chalk.greenBright(`LlamaCpp packages installation done.`));
