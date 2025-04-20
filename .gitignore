@@ -39,3 +39,4 @@ llamacpp/.git
 __llamacpp
 downloaded_models/*
 !.gitkeep
+tmp
