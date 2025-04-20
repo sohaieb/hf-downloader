@@ -16,7 +16,10 @@ bun install
 To run:
 
 - Create a Hugging Face token: [Hugging Face Tokens](https://huggingface.co/docs/hub/security-tokens)
-- Copy `.env.example` to `.env` and set your `HF_TOKEN`.
+- Copy `.env.example` to `.env` and set variables as following:
+  - Create HuggingFace token and set `HF_TOKEN` variable.
+  - `DOWNLOADED_MODELS_FOLDER` is the folder where the models will be downloaded to. You can change it if needed.
+  - `PYTHON_VERSION` is the default version of Python used for [llama.cpp](https://github.com/ggml-org/llama.cpp). You can change it if needed.
 - Then:
 
 ```bash
