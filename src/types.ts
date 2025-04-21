@@ -1,4 +1,4 @@
-import type { hub } from "./config";
+import { hub } from "./config";
 
 export type HfGetModels = {
   query?: string;
